@@ -142,6 +142,9 @@ public:
 
     MOCK_METHOD(bool, createBackupBeforeSaving, (), (const, override));
     MOCK_METHOD(void, setCreateBackupBeforeSaving, (bool), (override));
+
+    MOCK_METHOD(QString, lastComposer, (), (const, override));
+    MOCK_METHOD(void, setLastComposer, (const QString&), (override));
 };
 }
 

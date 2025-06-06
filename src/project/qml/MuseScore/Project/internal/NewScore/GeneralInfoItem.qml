@@ -29,7 +29,7 @@ Column {
 
     property string title: ""
     property string defaultText: ""
-    property string info: defaultText
+    property string info: ""
     property bool isMultiLineEdit: false
 
     property NavigationPanel navigationPanel: null
@@ -72,6 +72,8 @@ Column {
             id: textFieldComponent
 
             TextInputField {
+                focus: true
+
                 hint: root.defaultText
 
                 navigation.panel: root.navigationPanel
@@ -80,6 +82,14 @@ Column {
 
                 onTextChanged: function(newTextValue) {
                     root.info = Boolean(newTextValue) ? newTextValue : root.defaultText
+                }
+
+                Keys.onReleased: {
+                    if ((event.key === Qt.Key_Tab || event.key === Qt.Key_Return || event.key === Qt.Key_Enter)
+                            && text.trim().length === 0) {
+                        text = root.defaultText
+                        event.accepted = true
+                    }
                 }
             }
         }

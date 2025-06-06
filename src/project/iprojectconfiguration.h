@@ -165,6 +165,9 @@ public:
 
     virtual bool createBackupBeforeSaving() const = 0;
     virtual void setCreateBackupBeforeSaving(bool create) = 0;
+
+    virtual QString lastComposer() const = 0;
+    virtual void setLastComposer(const QString& composer) = 0;
 };
 }
 

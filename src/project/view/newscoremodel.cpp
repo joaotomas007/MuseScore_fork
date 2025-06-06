@@ -59,6 +59,9 @@ bool NewScoreModel::createScore(const QVariant& info)
 
     globalContext()->setCurrentProject(project);
 
+    configuration()->setLastComposer(options.composer);
+    emit lastComposerChanged();
+
     bool isScoreCreatedFromInstruments = options.templatePath.empty();
     updatePreferredScoreCreationMode(isScoreCreatedFromInstruments);
 
@@ -143,4 +146,10 @@ void NewScoreModel::updatePreferredScoreCreationMode(bool isScoreCreatedFromInst
     } else {
         configuration()->setPreferredScoreCreationMode(PreferredScoreCreationMode::FromTemplate);
     }
+}
+
+QString NewScoreModel::lastComposer() const
+{
+    QString composer = configuration()->lastComposer();
+    return composer;
 }

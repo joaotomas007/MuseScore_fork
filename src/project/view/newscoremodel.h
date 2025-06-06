@@ -37,6 +37,9 @@ class NewScoreModel : public QObject, public muse::Injectable
 {
     Q_OBJECT
 
+    Q_PROPERTY(QString lastComposer READ lastComposer NOTIFY lastComposerChanged)
+
+
     muse::Inject<IProjectConfiguration> configuration = { this };
     muse::Inject<IProjectCreator> notationCreator = { this };
     muse::Inject<context::IGlobalContext> globalContext = { this };
@@ -47,11 +50,15 @@ public:
 
     Q_INVOKABLE QString preferredScoreCreationMode() const;
     Q_INVOKABLE bool createScore(const QVariant& info);
+    Q_INVOKABLE QString lastComposer() const;
 
 private:
     project::ProjectCreateOptions parseOptions(const QVariantMap& info) const;
     notation::DurationType noteIconToDurationType(int noteIconCode) const;
     void updatePreferredScoreCreationMode(bool isScoreCreatedFromInstruments);
+
+signals:
+    void lastComposerChanged();
 };
 }
 

@@ -161,6 +161,9 @@ public:
     bool createBackupBeforeSaving() const override;
     void setCreateBackupBeforeSaving(bool create) override;
 
+    QString lastComposer() const;
+    void setLastComposer(const QString& composer);
+
 private:
     muse::io::path_t appTemplatesPath() const;
     muse::io::path_t legacyCloudProjectsPath() const;

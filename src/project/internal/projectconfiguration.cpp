@@ -64,6 +64,7 @@ static const Settings::Key NUMBER_OF_SAVES_TO_GENERATE_AUDIO_KEY(module_name, "p
 static const Settings::Key SHOW_CLOUD_IS_NOT_AVAILABLE_WARNING(module_name, "project/showCloudIsNotAvailableWarning");
 static const Settings::Key DISABLE_VERSION_CHECKING(module_name, "project/disableVersionChecking");
 static const Settings::Key CREATE_BACKUP_BEFORE_SAVING(module_name, "project/createBackupBeforeSaving");
+static const Settings::Key LAST_COMPOSER_KEY(module_name, "project/lastComposer");
 
 static const std::string DEFAULT_FILE_SUFFIX(".mscz");
 static const std::string DEFAULT_FILE_FILTER("*.mscz");
@@ -712,4 +713,14 @@ bool ProjectConfiguration::disableVersionChecking() const
 void ProjectConfiguration::setDisableVersionChecking(bool disable)
 {
     settings()->setSharedValue(DISABLE_VERSION_CHECKING, Val(disable));
+}
+
+QString ProjectConfiguration::lastComposer() const
+{
+    return settings()->value(LAST_COMPOSER_KEY).toQString();
+}
+
+void ProjectConfiguration::setLastComposer(const QString& composer)
+{
+    settings()->setSharedValue(LAST_COMPOSER_KEY, Val(composer));
 }

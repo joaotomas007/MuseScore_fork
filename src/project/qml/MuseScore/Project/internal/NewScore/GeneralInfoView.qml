@@ -81,7 +81,9 @@ Column {
 
             title: qsTrc("project", "Composer")
 
-            defaultText: qsTrc("project", "Composer / arranger")
+            defaultText: newScoreModel.lastComposer !== "" ? newScoreModel.lastComposer : qsTrc("project", "Composer / arranger")
+
+            info: newScoreModel.lastComposer
 
             navigationPanel: root.navigationPanel
             navigationColumn: 1
